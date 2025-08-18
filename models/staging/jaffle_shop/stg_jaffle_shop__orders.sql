@@ -4,4 +4,5 @@ select
     order_date,
     status
 
-from `dbt-tutorial.jaffle_shop.orders`
+from {{ source('jaffle_shop', 'orders') }} --refferencing a source via source () macro.Source () macro takes 2 arguments : name of the source and table name:
+--`dbt-tutorial.jaffle_shop.orders`

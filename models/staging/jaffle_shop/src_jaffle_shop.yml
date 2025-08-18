@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: jaffle_shop # source name that I provide
+    database: dbt-tutorial # equivalent of project name in Bigquery
+    schema: jaffle_shop # provide schema/dataset name
+    tables:
+      - name: customers #table name that we are sourcing data from 
+      - name: orders    #table name that we are sourcing data from 
