@@ -1,30 +1,41 @@
 version: 2
 
-# configuring generic tests on staging models
+
 
 models:
   - name: stg_jaffle_shop__customers
+    description: Staged customer data from our jaffle shop app. # description of the model
     columns: 
       - name: customer_id
+        description: The primary key for customers.
+
+        # configuring generic tests on staging models
         tests:
           - unique
           - not_null
   - name: stg_jaffle_shop__orders
+    description: Staged order data from our jaffle shop app. # description of the model
     columns:
       - name: order_id
+        description: Primary key for orders.
+        # configuring generic tests on staging models
         tests:
           - unique
           - not_null
       - name: status
+        description: '{{ doc ("order_status")}}'
+        # configuring generic tests on staging models
         tests:
           - accepted_values:
-              values:
+              values: 
+                #values: ['completed', 'shipped','returned', 'return_pending', 'placed'] # an alternative of syntax below
                 - completed
                 - shipped
                 - returned
                 - return_pending
                 - placed
-      - name: customer_id
+      - name: customer_id #column name
+        description: Foreign key to stg_customers.customer_id. 
         tests:
           - relationships: # relationships test - every value in a column exists in the column of another table to maintain referential integrity.
               to: ref('stg_jaffle_shop__customers')
