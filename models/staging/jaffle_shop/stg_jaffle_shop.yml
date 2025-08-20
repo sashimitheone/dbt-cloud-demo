@@ -1,0 +1,31 @@
+version: 2
+
+# configuring generic tests on staging models
+
+models:
+  - name: stg_jaffle_shop__customers
+    columns: 
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_jaffle_shop__orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values:
+                - completed
+                - shipped
+                - returned
+                - return_pending
+                - placed
+      - name: customer_id
+        tests:
+          - relationships: # relationships test - every value in a column exists in the column of another table to maintain referential integrity.
+              to: ref('stg_jaffle_shop__customers')
+              field: customer_id
