@@ -1,9 +1,28 @@
 version: 2
 
 sources:
-  - name: jaffle_shop # source name that I provide
-    database: dbt-tutorial # equivalent of project name in Bigquery
-    schema: jaffle_shop # provide schema/dataset name
+  - name: jaffle_shop                                              # source name that I provide
+    description: A clone of a Postgres application database.       # source level description 
+    database: dbt-tutorial                                         # equivalent of project name in Bigquery
+    schema: jaffle_shop                                            # provide schema/dataset name
     tables:
-      - name: customers #table name that we are sourcing data from 
-      - name: orders    #table name that we are sourcing data from 
+      - name: customers                                            # table name that we are sourcing data from 
+        description: Raw customers data.                           # table level description 
+        columns:
+          - name: id
+            description: Primary key for customers.                # column level description 
+            tests:                                                 # column level generic tests
+              - unique
+              - not_null
+      - name: orders                                               # table name that we are sourcing data from 
+        description: Raw orders data.                              # table level description
+        columns:
+          - name: id
+            description: Primary key for orders.                   # column level description 
+            tests:                                                 # column level generic tests
+              - unique
+              - not_null
+        loaded_at_field: _etl_loaded_at
+        freshness:                                                 # configuration of source freshness
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
