@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: stripe # source name that I provide
     database: dbt-tutorial # equivalent of project name in Bigquery
-    schema: stripe # provide schema/dataset name
+    schema: stripe # equivalent of schema/dataset name in Bigquery
     tables:
       - name: payment #table name that we are sourcing data from 
         loaded_at_field: _batched_at

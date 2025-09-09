@@ -37,8 +37,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  jaffle_shop:
+  jaffle_shop: # should correspond to project name on line 5
     staging:
-      +materialized: view
+      +materialized: view # staging models are querying from sources. It is recomended to materialize those as views. "+" means materialize as views also models stored in subfolders within "staging"
     marts:
-      +materialized: table
+      +materialized: table # marts are the most dowstream models consumed by BI tools. It is recomended to materialize those as tables.
