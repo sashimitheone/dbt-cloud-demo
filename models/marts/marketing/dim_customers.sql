@@ -2,7 +2,7 @@ with customers as (
     select * from {{ ref ('stg_jaffle_shop__customers')}}
 ),
 orders as (
-    select * from {{ ref ('fct_orders')}}
+    select * from {{ ref ('fct_orders')}} -- I guess this one should be replaced by ref('stg_jaffle_shop__orders')
 ),
 customer_orders as (
     select
