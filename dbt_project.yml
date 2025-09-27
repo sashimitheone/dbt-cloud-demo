@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'jaffle_shop'
+name: 'jaffle_shop' # provide project name (author has "dbt_fundamentals_on_demand")
 version: '1.0.0'
 config-version: 2
 
@@ -37,7 +37,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  jaffle_shop: # should correspond to project name on line 5
+  jaffle_shop: # should correspond to project name on line 5 (author has "dbt_fundamentals_on_demand")
     staging:
       +materialized: view # staging models are querying from sources. It is recomended to materialize those as views. "+" means materialize as views also models stored in subfolders within "staging"
     marts:
