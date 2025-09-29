@@ -13,22 +13,22 @@ models:
         description: The primary key for customers.                # description of the column
 
         # configuring generic tests on staging models
-        tests:
+        tests: # "data_tests" syntax will also work
           - unique
           - not_null
   - name: stg_jaffle_shop__orders
     description: Staged order data from our jaffle shop app.       # description of the model
     columns:
-      - name: order_id
+      - name: order_id                                             # provide custom alias specified in staging model
         description: Primary key for orders.                       # description of the column
         # configuring generic tests on staging models
-        tests:
+        tests: # "data_tests" syntax will also work
           - unique
           - not_null
       - name: status
         description: '{{ doc ("order_status")}}'                   # description of the column
         # configuring generic tests on staging models
-        tests:
+        tests: # "data_tests" syntax will also work
           - accepted_values:
               values: 
                 #values: ['completed', 'shipped','returned', 'return_pending', 'placed'] # an alternative of syntax below
@@ -38,8 +38,8 @@ models:
                 - return_pending
                 - placed
       - name: customer_id                                          # provide custom alias specified in staging model
-        description: Foreign key to stg_customers.customer_id.     # description of the column 
+        description: Foreign key to stg_jaffle_shop__customers.customer_id     # description of the column 
         tests:
-          - relationships:                                         # relationships test - every value in a column exists in the column of another table to maintain referential integrity.
+          - relationships:                                         # relationships test - every value in customer_id column exists in stg_jaffle_shop__customers.customer_id column to maintain referential integrity.
               to: ref('stg_jaffle_shop__customers')
               field: customer_id
