@@ -7,7 +7,7 @@ version: 2
 
 models:
   - name: stg_jaffle_shop__customers
-    description: Staged customer data from our jaffle shop app. PK- customer id.    # model level description
+    description: Staged customer data from our jaffle shop app. Primary Key- customer id.    # model level description
     columns: 
       - name: customer_id                                          # provide custom alias specified in staging model
         description: The primary key for customers.                # column level description
