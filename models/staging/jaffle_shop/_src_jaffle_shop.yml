@@ -4,7 +4,7 @@
 version: 2
 
 sources:
-  - name: jaffle_shop                                              # source name that I provide; used as an argument in source() macro
+  - name: jaffle_shop                                              # source name that I provide; used as an argument in source() macro. Usually it represents your database and schema.
     description: A clone of a Postgres application database.       # source level description 
     database: dbt-tutorial                                         # equivalent of project name in Bigquery
     schema: jaffle_shop                                            # provide schema/dataset name
@@ -12,16 +12,16 @@ sources:
       - name: customers                                            # table name that we are sourcing data from 
         description: Raw customers data.                           # table level description 
         columns: # "data_tests" would work as well
-          - name: id                                               # provide column name as it is coming from the sources (no alias)
-            description: Primary key for customers.                # column level description 
+          - name: id                                               # provide column name as it is coming from the sources (no alias provided in staging model)
+            description: Primary key for customer data.                # column level description 
             tests:                                                 # generic tests for sources
               - unique
               - not_null
       - name: orders                                               # table name that we are sourcing data from 
         description: Raw orders data.                              # table level description
         columns:
-          - name: id                                               # provide column name as it is coming from the sources (no alias)
-            description: Primary key for orders.                   # column level description 
+          - name: id                                               # provide column name as it is coming from the sources (no alias provided in staging model)
+            description: Primary key for orders data.                   # column level description 
             tests: # "data_tests" would work as well               # generic tests for sources
               - unique
               - not_null

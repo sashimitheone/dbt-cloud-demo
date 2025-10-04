@@ -26,7 +26,7 @@ models:
           - unique
           - not_null
       - name: status
-        description: '{{ doc ("order_status")}}'                   # column level description
+        description: "{{ doc ('order_status')}}"   # refferencing column level description stored in separate markdown file. Argument is docblock name, not .md file name
         # configuring generic tests on staging models
         tests: # "data_tests" syntax will also work
           - accepted_values:
