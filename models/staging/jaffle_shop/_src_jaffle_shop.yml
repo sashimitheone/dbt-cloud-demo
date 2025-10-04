@@ -11,7 +11,7 @@ sources:
     tables:
       - name: customers                                            # table name that we are sourcing data from 
         description: Raw customers data.                           # table level description 
-        columns:
+        columns: # "data_tests" would work as well
           - name: id                                               # provide column name as it is coming from the sources (no alias)
             description: Primary key for customers.                # column level description 
             tests:                                                 # generic tests for sources
@@ -22,7 +22,7 @@ sources:
         columns:
           - name: id                                               # provide column name as it is coming from the sources (no alias)
             description: Primary key for orders.                   # column level description 
-            tests:                                                 # generic tests for sources
+            tests: # "data_tests" would work as well               # generic tests for sources
               - unique
               - not_null
         

@@ -7,26 +7,26 @@ version: 2
 
 models:
   - name: stg_jaffle_shop__customers
-    description: Staged customer data from our jaffle shop app.    # description of the model
+    description: Staged customer data from our jaffle shop app. PK- customer id.    # model level description
     columns: 
       - name: customer_id                                          # provide custom alias specified in staging model
-        description: The primary key for customers.                # description of the column
+        description: The primary key for customers.                # column level description
 
         # configuring generic tests on staging models
         tests: # "data_tests" syntax will also work
           - unique
           - not_null
   - name: stg_jaffle_shop__orders
-    description: Staged order data from our jaffle shop app.       # description of the model
+    description: Staged order data from our jaffle shop app. PK - order id.          # model level description
     columns:
       - name: order_id                                             # provide custom alias specified in staging model
-        description: Primary key for orders.                       # description of the column
+        description: Primary key for orders.                       # column level description
         # configuring generic tests on staging models
         tests: # "data_tests" syntax will also work
           - unique
           - not_null
       - name: status
-        description: '{{ doc ("order_status")}}'                   # description of the column
+        description: '{{ doc ("order_status")}}'                   # column level description
         # configuring generic tests on staging models
         tests: # "data_tests" syntax will also work
           - accepted_values:
@@ -38,7 +38,7 @@ models:
                 - return_pending
                 - placed
       - name: customer_id                                          # provide custom alias specified in staging model
-        description: Foreign key to stg_jaffle_shop__customers.customer_id     # description of the column 
+        description: Foreign key to stg_jaffle_shop__customers.customer_id     # description of the column that is going to pop up in documentation
         tests:
           - relationships:                                         # relationships test - every value in customer_id column exists in stg_jaffle_shop__customers.customer_id column to maintain referential integrity.
               to: ref('stg_jaffle_shop__customers')
